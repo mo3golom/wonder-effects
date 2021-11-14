@@ -1,7 +1,7 @@
 package wonderEffectMath_test
 
 import (
-	"github.com/mo3golom/wonder-effects.git/wonderEffectMath"
+	"github.com/mo3golom/wonder-effects/wonderEffectMath"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

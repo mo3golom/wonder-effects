@@ -1,7 +1,7 @@
 package wonderEffectType
 
 import (
-	"github.com/mo3golom/wonder-effects.git/wonderEffectDTO"
+	"github.com/mo3golom/wonder-effects/wonderEffectDTO"
 	"strconv"
 )
 

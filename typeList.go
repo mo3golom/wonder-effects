@@ -1,7 +1,7 @@
 package WonderEffects
 
 import (
-	"github.com/mo3golom/wonder-effects.git/wonderEffectType"
+	"github.com/mo3golom/wonder-effects/wonderEffectType"
 )
 
 type EffectType struct {

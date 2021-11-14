@@ -1,7 +1,7 @@
 package wonderEffectTransformer
 
 import (
-	"github.com/mo3golom/wonder-effects.git/wonderEffectSettings"
+	"github.com/mo3golom/wonder-effects/wonderEffectSettings"
 	"strconv"
 )
 

@@ -1,8 +1,8 @@
 package WonderEffects
 
 import (
-	"github.com/mo3golom/wonder-effects.git/wonderEffectDTO"
-	"github.com/mo3golom/wonder-effects.git/wonderEffectType"
+	"github.com/mo3golom/wonder-effects/wonderEffectDTO"
+	"github.com/mo3golom/wonder-effects/wonderEffectType"
 )
 
 // Handler обработчик, котрый можно собрать в цепочку
