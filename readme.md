@@ -1,0 +1,1 @@
+[![Go Reference](https://pkg.go.dev/badge/github.com/mo3golom/wonder-effects.svg)](https://pkg.go.dev/github.com/mo3golom/wonder-effects)
