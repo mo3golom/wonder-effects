@@ -1,4 +1,4 @@
-module github.com/mo3golom/wonder-effects.git
+module github.com/mo3golom/wonder-effects
 
 go 1.17
 
