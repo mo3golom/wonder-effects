@@ -3,13 +3,13 @@ package wonderEffectDTO
 type EffectValues struct {
 	MoveOnX, MoveOnY float64
 	RotateOn         float64
+	RotatePoint      string
 	OpacityOn        float32
 	ScaleOn          float64
-
-	StartX, StartY float64
-	StartRotate    float64
-	StartOpacity   float32
-	StartScale     float64
+	StartX, StartY   float64
+	StartRotate      float64
+	StartOpacity     float32
+	StartScale       float64
 }
 
 func NewEffectValues() *EffectValues {
