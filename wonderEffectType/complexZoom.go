@@ -25,7 +25,8 @@ func NewComplexZoom() *ComplexEffect {
 				startProgress: 0,
 				stopProgress:  0.2,
 				startValues: map[string]string{
-					"startScale": "0.2",
+					"startScale":       "0.2",
+					"startRotatePoint": "center",
 				},
 			},
 		},

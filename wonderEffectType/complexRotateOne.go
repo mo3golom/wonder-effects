@@ -14,8 +14,9 @@ func NewComplexRotateOne() *ComplexEffect {
 				startProgress: 0,
 				stopProgress:  0.3,
 				startValues: map[string]string{
-					"startScale":  "0.6",
-					"startRotate": "45",
+					"startScale":       "0.6",
+					"startRotate":      "45",
+					"startRotatePoint": "center",
 				},
 			},
 			{
@@ -28,7 +29,8 @@ func NewComplexRotateOne() *ComplexEffect {
 				startProgress: 0.2,
 				stopProgress:  0.4,
 				startValues: map[string]string{
-					"startRotate": "45",
+					"startRotate":      "45",
+					"startRotatePoint": "center",
 				},
 			},
 			{

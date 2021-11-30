@@ -26,7 +26,8 @@ func NewComplexPoplavokOne() *ComplexEffect {
 				startProgress: 0,
 				stopProgress:  0.4,
 				startValues: map[string]string{
-					"startRotate": "-15",
+					"startRotate":      "-15",
+					"startRotatePoint": "center",
 				},
 			},
 		},

@@ -93,4 +93,10 @@ func (a *ComplexEffect) setStartValues(effectValues *wonderEffectDTO.EffectValue
 	if nil == err {
 		effectValues.StartY += startDistanceY
 	}
+
+	startRotatePoint, ok := startValues["startRotatePoint"]
+
+	if ok && "" != startRotatePoint {
+		effectValues.RotatePoint = startRotatePoint
+	}
 }
