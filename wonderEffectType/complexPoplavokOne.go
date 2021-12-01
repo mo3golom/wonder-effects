@@ -1,5 +1,7 @@
 package wonderEffectType
 
+import "github.com/mo3golom/wonder-effects/wonderEffectDTO"
+
 func NewComplexPoplavokOne() *ComplexEffect {
 	return NewComplexEffect(
 		[]effectPart{
@@ -27,7 +29,7 @@ func NewComplexPoplavokOne() *ComplexEffect {
 				stopProgress:  0.4,
 				startValues: map[string]string{
 					"startRotate":      "-15",
-					"startRotatePoint": "center",
+					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 		},

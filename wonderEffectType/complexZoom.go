@@ -1,5 +1,7 @@
 package wonderEffectType
 
+import "github.com/mo3golom/wonder-effects/wonderEffectDTO"
+
 func NewComplexZoom() *ComplexEffect {
 	return NewComplexEffect(
 		[]effectPart{
@@ -26,7 +28,7 @@ func NewComplexZoom() *ComplexEffect {
 				stopProgress:  0.2,
 				startValues: map[string]string{
 					"startScale":       "0.2",
-					"startRotatePoint": "center",
+					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 		},

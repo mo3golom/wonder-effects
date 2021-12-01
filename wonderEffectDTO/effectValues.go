@@ -1,5 +1,19 @@
 package wonderEffectDTO
 
+// Можно было использовать йоты, но поскольку данные значения будут использоваться "клиентами",
+// то лучше сделать их более читаемыми
+const (
+	RotatePointCenter      = "center"
+	RotatePointerLeft      = "left"
+	RotatePointTop         = "top"
+	RotatePointRight       = "right"
+	RotatePointBottom      = "bottom"
+	RotatePointLeftTop     = "left-top"
+	RotatePointRightTop    = "right-top"
+	RotatePointLeftBottom  = "left-bottom"
+	RotatePointRightBottom = "right-bottom"
+)
+
 type EffectValues struct {
 	MoveOnX, MoveOnY float64
 	RotateOn         float64

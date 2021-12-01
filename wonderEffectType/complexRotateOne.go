@@ -1,5 +1,7 @@
 package wonderEffectType
 
+import "github.com/mo3golom/wonder-effects/wonderEffectDTO"
+
 // NewComplexRotateOne Комплексный эффект вращения 01
 // Начало: поворот на 45 градусов, масштаб 0.4
 func NewComplexRotateOne() *ComplexEffect {
@@ -16,7 +18,7 @@ func NewComplexRotateOne() *ComplexEffect {
 				startValues: map[string]string{
 					"startScale":       "0.6",
 					"startRotate":      "45",
-					"startRotatePoint": "center",
+					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 			{
@@ -30,7 +32,7 @@ func NewComplexRotateOne() *ComplexEffect {
 				stopProgress:  0.4,
 				startValues: map[string]string{
 					"startRotate":      "45",
-					"startRotatePoint": "center",
+					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 			{

@@ -1,5 +1,7 @@
 package wonderEffectType
 
+import "github.com/mo3golom/wonder-effects/wonderEffectDTO"
+
 // NewComplexRotateTwo Комплексный эффект вращения 02
 func NewComplexRotateTwo() *ComplexEffect {
 	return NewComplexEffect(
@@ -14,7 +16,7 @@ func NewComplexRotateTwo() *ComplexEffect {
 				stopProgress:  0.3,
 				startValues: map[string]string{
 					"startScale":       "1.4",
-					"startRotatePoint": "center",
+					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 			{
@@ -37,7 +39,7 @@ func NewComplexRotateTwo() *ComplexEffect {
 				stopProgress:  0.8,
 				startValues: map[string]string{
 					"startRotate":      "0",
-					"startRotatePoint": "center",
+					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 			{
@@ -60,7 +62,7 @@ func NewComplexRotateTwo() *ComplexEffect {
 				useOnlyLastState: true,
 				startValues: map[string]string{
 					"startRotate":      "0",
-					"startRotatePoint": "center",
+					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 		},
