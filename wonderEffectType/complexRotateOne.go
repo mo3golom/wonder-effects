@@ -9,7 +9,7 @@ func NewComplexRotateOne() *ComplexEffect {
 		[]effectPart{
 			{
 				effectType: &ScaleEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"scaleOn":        "0.4",
 					"easingFunction": "easeOutQuint",
 				},
@@ -23,9 +23,9 @@ func NewComplexRotateOne() *ComplexEffect {
 			},
 			{
 				effectType: &RotateEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"angle":          "45",
-					"direction":      "1",
+					"direction":      "reverse",
 					"easingFunction": "easeOutElastic",
 				},
 				startProgress: 0.2,
@@ -37,7 +37,7 @@ func NewComplexRotateOne() *ComplexEffect {
 			},
 			{
 				effectType: &MoveEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"distance":       "40",
 					"easingFunction": "easeInOutBack",
 				},
@@ -46,7 +46,7 @@ func NewComplexRotateOne() *ComplexEffect {
 			},
 			{
 				effectType: &MoveEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"distance": "40",
 				},
 				startProgress:    0.5,

@@ -7,10 +7,10 @@ func NewComplexZoom() *ComplexEffect {
 		[]effectPart{
 			{
 				effectType: &MoveEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"distance":       "10",
 					"easingFunction": "easeInSine",
-					"direction":      "3",
+					"direction":      "down",
 				},
 				startProgress: 0,
 				stopProgress:  0.2,
@@ -20,7 +20,7 @@ func NewComplexZoom() *ComplexEffect {
 			},
 			{
 				effectType: &ScaleEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"scaleOn":        "0.8",
 					"easingFunction": "easeOutSine",
 				},

@@ -7,10 +7,10 @@ func NewComplexPoplavokTwo() *ComplexEffect {
 		[]effectPart{
 			{
 				effectType: &MoveEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"distance":       "30",
 					"easingFunction": "easeOutElastic",
-					"direction":      "0",
+					"direction":      "left",
 				},
 				startProgress: 0,
 				stopProgress:  0.4,
@@ -20,10 +20,10 @@ func NewComplexPoplavokTwo() *ComplexEffect {
 			},
 			{
 				effectType: &RotateEffect{},
-				settings: map[string]string{
+				options: map[string]string{
 					"angle":          "15",
 					"easingFunction": "easeOutElastic",
-					"direction":      "1",
+					"direction":      "reverse",
 				},
 				startProgress: 0,
 				stopProgress:  0.4,

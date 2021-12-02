@@ -1,6 +1,6 @@
 package wonderEffectDTO
 
 type Effect struct {
-	Id       string            `json:"id"`
-	Settings map[string]string `json:"settings"`
+	Id      string            `json:"id"`
+	Options map[string]string `json:"options"`
 }

@@ -4,41 +4,41 @@ import (
 	"errors"
 	"github.com/mo3golom/wonder-effects/wonderEffectDTO"
 	"github.com/mo3golom/wonder-effects/wonderEffectMath"
-	"github.com/mo3golom/wonder-effects/wonderEffectSettings"
+	"github.com/mo3golom/wonder-effects/wonderEffectOptions"
 	"github.com/mo3golom/wonder-effects/wonderEffectTransformer"
 )
 
 type MoveEffect struct {
-	settings *wonderEffectSettings.MoveSettings
+	options *wonderEffectOptions.MoveOptions
 }
 
 func (m *MoveEffect) Processing(effectValues *wonderEffectDTO.EffectValues, progress *float32) (err error) {
-	if nil == m.settings {
+	if nil == m.options {
 		return errors.New("предварительно необходимо преобразовать настройки")
 	}
 
-	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, m.settings.EasingFunction()))
+	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, m.options.EasingFunction()))
 
-	switch m.settings.Direction() {
-	case wonderEffectSettings.DirectionLeft:
-		effectValues.MoveOnX = -(m.settings.Distance() * progressEasing)
+	switch m.options.Direction() {
+	case wonderEffectOptions.DirectionLeft:
+		effectValues.MoveOnX = -(m.options.Distance() * progressEasing)
 		effectValues.MoveOnY = 0
-	case wonderEffectSettings.DirectionUp:
+	case wonderEffectOptions.DirectionUp:
 		effectValues.MoveOnX = 0
-		effectValues.MoveOnY = -(m.settings.Distance() * progressEasing)
-	case wonderEffectSettings.DirectionRight:
-		effectValues.MoveOnX = m.settings.Distance() * progressEasing
+		effectValues.MoveOnY = -(m.options.Distance() * progressEasing)
+	case wonderEffectOptions.DirectionRight:
+		effectValues.MoveOnX = m.options.Distance() * progressEasing
 		effectValues.MoveOnY = 0
-	case wonderEffectSettings.DirectionDown:
+	case wonderEffectOptions.DirectionDown:
 		effectValues.MoveOnX = 0
-		effectValues.MoveOnY = m.settings.Distance() * progressEasing
+		effectValues.MoveOnY = m.options.Distance() * progressEasing
 	}
 
 	return nil
 }
 
-func (m *MoveEffect) TransformSettings(settings *map[string]string) EffectInterface {
-	m.settings = wonderEffectTransformer.TransformMoveSettings(*settings)
+func (m *MoveEffect) TransformOptions(options *map[string]string) EffectInterface {
+	m.options = wonderEffectTransformer.TransformMoveOptions(*options)
 
 	return m
 }

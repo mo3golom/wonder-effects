@@ -34,7 +34,7 @@ func NewEffectHandlerBus(effectTypes []EffectType) *Handler {
 func (th *Handler) Handle(effect *wonderEffectDTO.Effect, effectValues *wonderEffectDTO.EffectValues, progress *float32) (err error) {
 	if effect.Id == th.id {
 
-		return th.effect.TransformSettings(&effect.Settings).Processing(effectValues, progress)
+		return th.effect.TransformOptions(&effect.Options).Processing(effectValues, progress)
 	}
 
 	if nil != th.nextHandler {

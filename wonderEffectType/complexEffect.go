@@ -8,7 +8,7 @@ import (
 // Часть комплексного эффекта
 type effectPart struct {
 	effectType                  EffectInterface   // эффект, который нужно применить
-	settings                    map[string]string // настройки для эффекта
+	options                     map[string]string // настройки для эффекта
 	startProgress, stopProgress float32           // старт и конец на линии "глобального" прогресса
 	startValues                 map[string]string // стартовые значения, переопределяют Start значения в effectValues
 	useOnlyLastState            bool              // Использовать только конечное состояние в эффекте (100% прогресса)
@@ -49,7 +49,7 @@ func (a *ComplexEffect) Processing(effectValues *wonderEffectDTO.EffectValues, p
 		a.setStartValues(effectValues, effectPart.startValues)
 
 		// Применяем эффект
-		err = effectPart.effectType.TransformSettings(&effectPart.settings).Processing(effectValues, &effectPartProgress)
+		err = effectPart.effectType.TransformOptions(&effectPart.options).Processing(effectValues, &effectPartProgress)
 
 		if nil != err {
 			return err
@@ -59,7 +59,7 @@ func (a *ComplexEffect) Processing(effectValues *wonderEffectDTO.EffectValues, p
 	return nil
 }
 
-func (a *ComplexEffect) TransformSettings(_ *map[string]string) EffectInterface {
+func (a *ComplexEffect) TransformOptions(_ *map[string]string) EffectInterface {
 	return a
 }
 
