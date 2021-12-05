@@ -6,7 +6,10 @@ import (
 	"github.com/mo3golom/wonder-effects/wonderEffectMath"
 	"github.com/mo3golom/wonder-effects/wonderEffectOptions"
 	"github.com/mo3golom/wonder-effects/wonderEffectTransformer"
+	"math"
 )
+
+const pathMultiplier = 2
 
 type MoveEffect struct {
 	options *wonderEffectOptions.MoveOptions
@@ -22,16 +25,16 @@ func (m *MoveEffect) Processing(effectValues *wonderEffectDTO.EffectValues, prog
 	switch m.options.Direction() {
 	case wonderEffectOptions.DirectionLeft:
 		effectValues.MoveOnX = -(m.options.Distance() * progressEasing)
-		effectValues.MoveOnY = 0
+		effectValues.MoveOnY = -m.applyPathFunction(effectValues.MoveOnX)
 	case wonderEffectOptions.DirectionUp:
-		effectValues.MoveOnX = 0
 		effectValues.MoveOnY = -(m.options.Distance() * progressEasing)
+		effectValues.MoveOnX = m.applyPathFunction(effectValues.MoveOnY)
 	case wonderEffectOptions.DirectionRight:
 		effectValues.MoveOnX = m.options.Distance() * progressEasing
-		effectValues.MoveOnY = 0
+		effectValues.MoveOnY = m.applyPathFunction(effectValues.MoveOnX)
 	case wonderEffectOptions.DirectionDown:
-		effectValues.MoveOnX = 0
 		effectValues.MoveOnY = m.options.Distance() * progressEasing
+		effectValues.MoveOnX = -m.applyPathFunction(effectValues.MoveOnY)
 	}
 
 	return nil
@@ -41,4 +44,20 @@ func (m *MoveEffect) TransformOptions(options *map[string]string) EffectInterfac
 	m.options = wonderEffectTransformer.TransformMoveOptions(*options)
 
 	return m
+}
+
+func (m *MoveEffect) applyPathFunction(value float64) float64 {
+
+	switch m.options.PathFunction() {
+	case "sin":
+		return math.Sin(0.5*value) * pathMultiplier
+
+	case "cos":
+		return math.Cos(0.5*value) * pathMultiplier
+
+	case "circle":
+		return m.options.Distance() - math.Sqrt(math.Pow(m.options.Distance(), 2)-math.Pow(value, 2))
+	}
+
+	return 0
 }

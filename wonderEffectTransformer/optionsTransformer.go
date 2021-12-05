@@ -16,6 +16,12 @@ func TransformMoveOptions(options map[string]string) *wonderEffectOptions.MoveOp
 		moveOptions.SetDistance(distance)
 	}
 
+	pathFunction, ok := options["pathFunction"]
+
+	if ok {
+		moveOptions.SetPathFunction(pathFunction)
+	}
+
 	return moveOptions
 }
 

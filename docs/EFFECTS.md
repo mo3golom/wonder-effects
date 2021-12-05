@@ -11,6 +11,7 @@
 | direction  | направление |left, up, right, down | right |
 | easingFunction | функция плавности | [Функции плавности](./EASING.md)  | linear |
 | distance | дистанция, на которую будет перемещение |любое число типа float | 100
+| pathFunction | функция траектории перемещения | sin, cos, circle | 
 
 ### Вращение (ID - rotate)
 

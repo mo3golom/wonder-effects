@@ -3,7 +3,8 @@ package wonderEffectOptions
 const distanceDefault = 100
 
 type MoveOptions struct {
-	distance float64
+	distance     float64
+	pathFunction string
 	*BaseOptions
 }
 
@@ -20,4 +21,12 @@ func (m *MoveOptions) Distance() float64 {
 
 func (m *MoveOptions) SetDistance(distance float64) {
 	m.distance = distance
+}
+
+func (m *MoveOptions) PathFunction() string {
+	return m.pathFunction
+}
+
+func (m *MoveOptions) SetPathFunction(pathFunction string) {
+	m.pathFunction = pathFunction
 }
