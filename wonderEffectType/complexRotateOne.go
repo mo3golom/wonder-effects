@@ -9,36 +9,36 @@ func NewComplexRotateOne() *ComplexEffect {
 		[]effectPart{
 			{
 				effectType: &ScaleEffect{},
-				options: map[string]string{
-					"scaleOn":        "0.4",
+				options: map[string]interface{}{
+					"scaleOn":        0.4,
 					"easingFunction": "easeOutQuint",
 				},
 				startProgress: 0,
 				stopProgress:  0.3,
-				startValues: map[string]string{
-					"startScale":       "0.6",
-					"startRotate":      "45",
-					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
+				startValues: map[string]interface{}{
+					"startScale":  0.6,
+					"startRotate": 45,
+					"rotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 			{
 				effectType: &RotateEffect{},
-				options: map[string]string{
-					"angle":          "45",
+				options: map[string]interface{}{
+					"angle":          45,
 					"direction":      "reverse",
 					"easingFunction": "easeOutElastic",
 				},
 				startProgress: 0.2,
 				stopProgress:  0.4,
-				startValues: map[string]string{
-					"startRotate":      "45",
-					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
+				startValues: map[string]interface{}{
+					"startRotate": 45,
+					"rotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 			{
 				effectType: &MoveEffect{},
-				options: map[string]string{
-					"distance":       "40",
+				options: map[string]interface{}{
+					"distance":       40,
 					"easingFunction": "easeInOutBack",
 				},
 				startProgress: 0.28,
@@ -46,17 +46,17 @@ func NewComplexRotateOne() *ComplexEffect {
 			},
 			{
 				effectType: &MoveEffect{},
-				options: map[string]string{
-					"distance": "40",
+				options: map[string]interface{}{
+					"distance": 40,
 				},
 				startProgress:    0.5,
 				stopProgress:     1,
 				useOnlyLastState: true,
 			},
 		},
-		map[string]string{
-			"startRotate": "0",
-			"startScale":  "1",
+		map[string]interface{}{
+			"startRotate": 0,
+			"startScale":  1,
 		},
 	)
 }

@@ -7,35 +7,35 @@ func NewComplexPoplavokTwo() *ComplexEffect {
 		[]effectPart{
 			{
 				effectType: &MoveEffect{},
-				options: map[string]string{
-					"distance":       "30",
+				options: map[string]interface{}{
+					"distance":       30,
 					"easingFunction": "easeOutElastic",
 					"direction":      "left",
 				},
 				startProgress: 0,
 				stopProgress:  0.4,
-				startValues: map[string]string{
-					"startDistanceX": "30",
+				startValues: map[string]interface{}{
+					"startX": 30,
 				},
 			},
 			{
 				effectType: &RotateEffect{},
-				options: map[string]string{
-					"angle":          "15",
+				options: map[string]interface{}{
+					"angle":          15,
 					"easingFunction": "easeOutElastic",
 					"direction":      "reverse",
 				},
 				startProgress: 0,
 				stopProgress:  0.4,
-				startValues: map[string]string{
-					"startRotate":      "15",
-					"startRotatePoint": wonderEffectDTO.RotatePointCenter,
+				startValues: map[string]interface{}{
+					"startRotate": 15,
+					"rotatePoint": wonderEffectDTO.RotatePointCenter,
 				},
 			},
 		},
-		map[string]string{
-			"startRotate": "0",
-			"startScale":  "1",
+		map[string]interface{}{
+			"startRotate": 0,
+			"startScale":  1,
 		},
 	)
 }

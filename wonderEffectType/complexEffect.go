@@ -1,27 +1,27 @@
 package wonderEffectType
 
 import (
+	"github.com/mitchellh/mapstructure"
 	"github.com/mo3golom/wonder-effects/wonderEffectDTO"
-	"strconv"
 )
 
 // Часть комплексного эффекта
 type effectPart struct {
-	effectType                  EffectInterface   // эффект, который нужно применить
-	options                     map[string]string // настройки для эффекта
-	startProgress, stopProgress float32           // старт и конец на линии "глобального" прогресса
-	startValues                 map[string]string // стартовые значения, переопределяют Start значения в effectValues
-	useOnlyLastState            bool              // Использовать только конечное состояние в эффекте (100% прогресса)
+	effectType                  EffectInterface        // эффект, который нужно применить
+	options                     map[string]interface{} // настройки для эффекта
+	startProgress, stopProgress float32                // старт и конец на линии "глобального" прогресса
+	startValues                 map[string]interface{} // стартовые значения, переопределяют Start значения в effectValues
+	useOnlyLastState            bool                   // Использовать только конечное состояние в эффекте (100% прогресса)
 }
 
 // ComplexEffect Вспомогательный асбтрактный комплексный эффект
 // Позволяет создавать конкретные реализации комплексных эффектов через конфигурацию в конструкторе
 type ComplexEffect struct {
 	effects     []effectPart
-	startValues map[string]string
+	startValues map[string]interface{}
 }
 
-func NewComplexEffect(effects []effectPart, startValues map[string]string) *ComplexEffect {
+func NewComplexEffect(effects []effectPart, startValues map[string]interface{}) *ComplexEffect {
 	return &ComplexEffect{
 		effects:     effects,
 		startValues: startValues,
@@ -59,44 +59,10 @@ func (a *ComplexEffect) Processing(effectValues *wonderEffectDTO.EffectValues, p
 	return nil
 }
 
-func (a *ComplexEffect) TransformOptions(_ *map[string]string) EffectInterface {
+func (a *ComplexEffect) TransformOptions(_ *map[string]interface{}) EffectInterface {
 	return a
 }
 
-func (a *ComplexEffect) setStartValues(effectValues *wonderEffectDTO.EffectValues, startValues map[string]string) {
-	startScale, err := strconv.ParseFloat(startValues["startScale"], 64)
-
-	if nil == err {
-		effectValues.StartScale = startScale
-	}
-
-	startRotate, err := strconv.ParseFloat(startValues["startRotate"], 64)
-
-	if nil == err {
-		effectValues.StartRotate = startRotate
-	}
-
-	startOpacity, err := strconv.ParseFloat(startValues["startOpacity"], 32)
-
-	if nil == err {
-		effectValues.StartOpacity = float32(startOpacity)
-	}
-
-	startDistanceX, err := strconv.ParseFloat(startValues["startDistanceX"], 64)
-
-	if nil == err {
-		effectValues.StartX += startDistanceX
-	}
-
-	startDistanceY, err := strconv.ParseFloat(startValues["startDistanceY"], 64)
-
-	if nil == err {
-		effectValues.StartY += startDistanceY
-	}
-
-	startRotatePoint, ok := startValues["startRotatePoint"]
-
-	if ok && "" != startRotatePoint {
-		effectValues.RotatePoint = startRotatePoint
-	}
+func (a *ComplexEffect) setStartValues(effectValues *wonderEffectDTO.EffectValues, startValues map[string]interface{}) {
+	_ = mapstructure.Decode(startValues, effectValues)
 }

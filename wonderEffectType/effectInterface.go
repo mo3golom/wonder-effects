@@ -6,5 +6,5 @@ import (
 
 type EffectInterface interface {
 	Processing(effectValues *wonderEffectDTO.EffectValues, progress *float32) (err error)
-	TransformOptions(options *map[string]string) EffectInterface
+	TransformOptions(options *map[string]interface{}) EffectInterface
 }

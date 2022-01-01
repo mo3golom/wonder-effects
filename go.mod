@@ -2,7 +2,10 @@ module github.com/mo3golom/wonder-effects
 
 go 1.17
 
-require github.com/stretchr/testify v1.7.0
+require (
+	github.com/mitchellh/mapstructure v1.4.3
+	github.com/stretchr/testify v1.7.0
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.0 // indirect

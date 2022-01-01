@@ -2,10 +2,10 @@ package wonderEffectType
 
 import (
 	"errors"
+	"github.com/mitchellh/mapstructure"
 	"github.com/mo3golom/wonder-effects/wonderEffectDTO"
 	"github.com/mo3golom/wonder-effects/wonderEffectMath"
 	"github.com/mo3golom/wonder-effects/wonderEffectOptions"
-	"github.com/mo3golom/wonder-effects/wonderEffectTransformer"
 )
 
 type RotateEffect struct {
@@ -17,10 +17,10 @@ func (r *RotateEffect) Processing(effectValues *wonderEffectDTO.EffectValues, pr
 		return errors.New("предварительно необходимо преобразовать настройки")
 	}
 
-	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, r.options.EasingFunction()))
-	angle := r.options.Angle() * progressEasing
+	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, r.options.EasingFunction))
+	angle := r.options.Angle * progressEasing
 
-	switch r.options.Direction() {
+	switch r.options.Direction {
 	case wonderEffectOptions.DirectionNormal:
 		effectValues.RotateOn = angle
 	case wonderEffectOptions.DirectionReverse:
@@ -30,8 +30,12 @@ func (r *RotateEffect) Processing(effectValues *wonderEffectDTO.EffectValues, pr
 	return nil
 }
 
-func (r *RotateEffect) TransformOptions(options *map[string]string) EffectInterface {
-	r.options = wonderEffectTransformer.TransformRotateOptions(*options)
+func (r *RotateEffect) TransformOptions(options *map[string]interface{}) EffectInterface {
+	rotateOptions := wonderEffectOptions.NewRotateOptions()
+	_ = mapstructure.Decode(*options, rotateOptions)
+	_ = mapstructure.Decode(*options, rotateOptions.BaseOptions)
+
+	r.options = rotateOptions
 
 	return r
 }

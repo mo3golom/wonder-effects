@@ -2,10 +2,10 @@ package wonderEffectType
 
 import (
 	"errors"
+	"github.com/mitchellh/mapstructure"
 	"github.com/mo3golom/wonder-effects/wonderEffectDTO"
 	"github.com/mo3golom/wonder-effects/wonderEffectMath"
 	"github.com/mo3golom/wonder-effects/wonderEffectOptions"
-	"github.com/mo3golom/wonder-effects/wonderEffectTransformer"
 )
 
 type ScaleEffect struct {
@@ -17,10 +17,10 @@ func (s *ScaleEffect) Processing(effectValues *wonderEffectDTO.EffectValues, pro
 		return errors.New("предварительно необходимо преобразовать настройки")
 	}
 
-	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, s.options.EasingFunction()))
-	additional := s.options.ScaleOn() * progressEasing
+	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, s.options.EasingFunction))
+	additional := s.options.ScaleOn * progressEasing
 
-	switch s.options.Direction() {
+	switch s.options.Direction {
 	case wonderEffectOptions.DirectionNormal:
 		effectValues.ScaleOn = additional
 	case wonderEffectOptions.DirectionReverse:
@@ -30,8 +30,12 @@ func (s *ScaleEffect) Processing(effectValues *wonderEffectDTO.EffectValues, pro
 	return nil
 }
 
-func (s *ScaleEffect) TransformOptions(options *map[string]string) EffectInterface {
-	s.options = wonderEffectTransformer.TransformScaleOptions(*options)
+func (s *ScaleEffect) TransformOptions(options *map[string]interface{}) EffectInterface {
+	scaleOptions := wonderEffectOptions.NewScaleOptions()
+	_ = mapstructure.Decode(*options, scaleOptions)
+	_ = mapstructure.Decode(*options, scaleOptions.BaseOptions)
+
+	s.options = scaleOptions
 
 	return s
 }

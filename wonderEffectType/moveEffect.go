@@ -2,10 +2,10 @@ package wonderEffectType
 
 import (
 	"errors"
+	"github.com/mitchellh/mapstructure"
 	"github.com/mo3golom/wonder-effects/wonderEffectDTO"
 	"github.com/mo3golom/wonder-effects/wonderEffectMath"
 	"github.com/mo3golom/wonder-effects/wonderEffectOptions"
-	"github.com/mo3golom/wonder-effects/wonderEffectTransformer"
 	"math"
 )
 
@@ -20,35 +20,39 @@ func (m *MoveEffect) Processing(effectValues *wonderEffectDTO.EffectValues, prog
 		return errors.New("предварительно необходимо преобразовать настройки")
 	}
 
-	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, m.options.EasingFunction()))
+	progressEasing := float64(wonderEffectMath.ApplyEasing(*progress, m.options.EasingFunction))
 
-	switch m.options.Direction() {
+	switch m.options.Direction {
 	case wonderEffectOptions.DirectionLeft:
-		effectValues.MoveOnX = -(m.options.Distance() * progressEasing)
+		effectValues.MoveOnX = -(m.options.Distance * progressEasing)
 		effectValues.MoveOnY = -m.applyPathFunction(effectValues.MoveOnX)
 	case wonderEffectOptions.DirectionUp:
-		effectValues.MoveOnY = -(m.options.Distance() * progressEasing)
+		effectValues.MoveOnY = -(m.options.Distance * progressEasing)
 		effectValues.MoveOnX = m.applyPathFunction(effectValues.MoveOnY)
 	case wonderEffectOptions.DirectionRight:
-		effectValues.MoveOnX = m.options.Distance() * progressEasing
+		effectValues.MoveOnX = m.options.Distance * progressEasing
 		effectValues.MoveOnY = m.applyPathFunction(effectValues.MoveOnX)
 	case wonderEffectOptions.DirectionDown:
-		effectValues.MoveOnY = m.options.Distance() * progressEasing
+		effectValues.MoveOnY = m.options.Distance * progressEasing
 		effectValues.MoveOnX = -m.applyPathFunction(effectValues.MoveOnY)
 	}
 
 	return nil
 }
 
-func (m *MoveEffect) TransformOptions(options *map[string]string) EffectInterface {
-	m.options = wonderEffectTransformer.TransformMoveOptions(*options)
+func (m *MoveEffect) TransformOptions(options *map[string]interface{}) EffectInterface {
+	moveOptions := wonderEffectOptions.NewMoveOptions()
+	_ = mapstructure.Decode(*options, moveOptions)
+	_ = mapstructure.Decode(*options, moveOptions.BaseOptions)
+
+	m.options = moveOptions
 
 	return m
 }
 
 func (m *MoveEffect) applyPathFunction(value float64) float64 {
 
-	switch m.options.PathFunction() {
+	switch m.options.PathFunction {
 	case "sin":
 		return math.Sin(0.5*value) * pathMultiplier
 
@@ -56,7 +60,7 @@ func (m *MoveEffect) applyPathFunction(value float64) float64 {
 		return math.Cos(0.5*value) * pathMultiplier
 
 	case "circle":
-		return m.options.Distance() - math.Sqrt(math.Pow(m.options.Distance(), 2)-math.Pow(value, 2))
+		return m.options.Distance - math.Sqrt(math.Pow(m.options.Distance, 2)-math.Pow(value, 2))
 	}
 
 	return 0

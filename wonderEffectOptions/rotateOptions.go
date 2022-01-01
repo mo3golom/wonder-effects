@@ -1,21 +1,13 @@
 package wonderEffectOptions
 
 type RotateOptions struct {
-	angle float64
+	Angle float64 `mapstructure:"angle"`
 	*BaseOptions
 }
 
 func NewRotateOptions() *RotateOptions {
 	return &RotateOptions{
-		angle:       360,
+		Angle:       360,
 		BaseOptions: NewBaseOptions(DirectionNormal),
 	}
-}
-
-func (r *RotateOptions) Angle() float64 {
-	return r.angle
-}
-
-func (r *RotateOptions) SetAngle(angle float64) {
-	r.angle = angle
 }

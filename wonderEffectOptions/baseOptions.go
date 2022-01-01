@@ -13,29 +13,13 @@ const (
 )
 
 type BaseOptions struct {
-	direction      string
-	easingFunction string
+	Direction      string `mapstructure:"direction"`
+	EasingFunction string `mapstructure:"easingFunction"`
 }
 
 func NewBaseOptions(direction string) *BaseOptions {
 	return &BaseOptions{
-		direction:      direction,
-		easingFunction: "linear",
+		Direction:      direction,
+		EasingFunction: "linear",
 	}
-}
-
-func (b *BaseOptions) Direction() string {
-	return b.direction
-}
-
-func (b *BaseOptions) SetDirection(direction string) {
-	b.direction = direction
-}
-
-func (b *BaseOptions) EasingFunction() string {
-	return b.easingFunction
-}
-
-func (b *BaseOptions) SetEasingFunction(easingFunction string) {
-	b.easingFunction = easingFunction
 }

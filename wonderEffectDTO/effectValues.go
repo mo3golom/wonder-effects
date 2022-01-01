@@ -17,13 +17,15 @@ const (
 type EffectValues struct {
 	MoveOnX, MoveOnY float64
 	RotateOn         float64
-	RotatePoint      string
+	RotatePoint      string `mapstructure:"rotatePoint"`
 	OpacityOn        float32
 	ScaleOn          float64
-	StartX, StartY   float64
-	StartRotate      float64
-	StartOpacity     float32
-	StartScale       float64
+
+	StartX       float64 `mapstructure:"startX"`
+	StartY       float64 `mapstructure:"startY"`
+	StartRotate  float64 `mapstructure:"startRotate"`
+	StartOpacity float32 `mapstructure:"startOpacity"`
+	StartScale   float64 `mapstructure:"startScale"`
 }
 
 func NewEffectValues() *EffectValues {
